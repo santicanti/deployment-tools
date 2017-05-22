@@ -22,7 +22,12 @@
     "type": "shell",
     "inline": [
       "sleep 30",
-      "sudo apt-get update",
+      "sudo sh -c 'echo deb http://debs.auth0.com/ stable main > /etc/apt/sources.list.d/auth0.list'",
+      "sudo apt-key adv --keyserver keyserver.ubuntu.com --recv F63E3D3A",
+      "echo updating...",
+      "sudo apt-get -y update",
+      "sudo apt-get install -y auth0-node-v4.4.4-linux-x64",
+      "echo installing package...",
       "sudo dpkg -i ./package.deb"
     ]
   }]
