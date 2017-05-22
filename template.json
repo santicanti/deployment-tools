@@ -16,14 +16,14 @@
   "provisioners": [{
     "type": "file",
     "source": "./package.deb",
-    "destination": "/tmp/package.deb"
+    "destination": "./package.deb"
   },
   {
     "type": "shell",
     "inline": [
       "sleep 30",
       "sudo apt-get update",
-      "sudo dpkg -i /tmp/package.deb"
+      "sudo dpkg -i ./package.deb"
     ]
   }]
 }
