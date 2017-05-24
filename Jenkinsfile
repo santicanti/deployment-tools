@@ -13,11 +13,11 @@ node {
    }
    stage('Copy package') {
       echo 'Copying package to current dir...'
-      sh "cp $packagePath ./package.deb"
+      sh "cp $PACKAGE_PATH ./package.deb"
    }
    stage('Call packer') {
        echo 'Getting file name...'
-       String filename = packagePath.take(packagePath.lastIndexOf('.')) + currentBuild.number
+       String filename = PACKAGE_PATH.take(PACKAGE_PATH.lastIndexOf('.')) + currentBuild.number
 
        sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY -var 'aws_secret_key='$AWS_SECRET_KEY -var 'ami_name'=$filename template.json"
    }
