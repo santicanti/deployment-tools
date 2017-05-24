@@ -17,8 +17,9 @@ node {
    }
    stage('Call packer') {
        echo 'Getting file name...'
-       String filename = PACKAGE_PATH.take(PACKAGE_PATH.lastIndexOf('.')) + currentBuild.number
+       String fileName = PACKAGE_PATH.substring(PACKAGE_PATH.lastIndexOf('/') + 1)
+       String amiName = fileName.take(fileName.lastIndexOf('.')) + currentBuild.number
 
-       sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY -var 'aws_secret_key='$AWS_SECRET_KEY -var 'ami_name'=$filename template.json"
+       sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY -var 'aws_secret_key='$AWS_SECRET_KEY -var 'ami_name'=$amiName template.json"
    }
 }
