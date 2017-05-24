@@ -1,5 +1,5 @@
 node {
-  try {
+  //try {
       stage('Preparation') {
         echo 'Getting packer if it doesnt exist...'
         try {
@@ -47,10 +47,10 @@ node {
 
         currentBuild.result = 'SUCCESS'
       }
-  } catch (err) {
+  /*} catch (err) {
       currentBuild.result = 'FAILURE'
       echo err.getMessage()
   } finally {
       deleteDir()
-  }
+  }*/
 }
