@@ -30,9 +30,10 @@ node {
       }
       stage('Call packer') {
         echo 'Creating ami name...'
+        String amiName
         try {
           String fileName = PACKAGE_PATH.substring(PACKAGE_PATH.lastIndexOf('/') + 1)
-          String amiName = fileName.take(fileName.lastIndexOf('.')) + currentBuild.number
+          amiName = fileName.take(fileName.lastIndexOf('.')) + currentBuild.number
         } catch (err) {
           error('There was an error creating the ami name.')
         }
@@ -41,7 +42,7 @@ node {
         try {
           sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY -var 'aws_secret_key='$AWS_SECRET_KEY -var 'ami_name'=$amiName template.json"
         } catch (err) {
-          error('There was an error calling packer: ' + err.getMessage())
+          error('There was an error calling packer: ' + err.toString())
         }
 
         currentBuild.result = 'SUCCESS'
