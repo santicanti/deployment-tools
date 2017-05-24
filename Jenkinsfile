@@ -1,5 +1,5 @@
 node {
-  //try {
+  try {
       stage('Preparation') {
         echo 'Getting packer if it doesnt exist...'
         try {
