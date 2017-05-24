@@ -52,6 +52,6 @@ node {
       currentBuild.result = 'FAILURE'
       echo err.getMessage()
   } finally {
-      deleteDir()
+      //deleteDir()
   }
 }
