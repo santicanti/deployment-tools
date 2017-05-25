@@ -8,7 +8,7 @@ node {
           sh 'rm packer_1.0.0_linux_amd64.zip'
         }
       } catch(err) {
-        error("There was an error getting packer.")
+        error("There was an error getting packer: " + err.getMessage())
       }
     }
     stage('Checkout') {
@@ -16,7 +16,7 @@ node {
       try {
         checkout scm
       } catch (err) {
-        error('There was an error during checkout.')
+        error('There was an error during checkout: ' + err.getMessage())
       }
     }
     stage('Copy package') {
@@ -24,7 +24,7 @@ node {
       try {
         sh "cp $PACKAGE_PATH ./package.deb"
       } catch (err) {
-        error('There was an error copying the package.')
+        error('There was an error copying the package: ' + err.getMessage())
       }
     }
     stage('Call packer') {
@@ -34,7 +34,7 @@ node {
         String fileName = PACKAGE_PATH.substring(PACKAGE_PATH.lastIndexOf('/') + 1)
         amiName = fileName.take(fileName.lastIndexOf('.')) + currentBuild.number
       } catch (err) {
-        error('There was an error creating the ami name.')
+        error('There was an error creating the ami name: ' + err.getMessage())
       }
 
       echo 'Calling packer...'
