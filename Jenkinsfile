@@ -53,5 +53,6 @@ node {
       echo err.getMessage()
   } finally {
       //deleteDir()
+      sh 'rm -rf .'
   }
 }
