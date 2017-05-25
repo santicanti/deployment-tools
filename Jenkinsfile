@@ -52,7 +52,7 @@ node {
       currentBuild.result = 'FAILURE'
       echo err.getMessage()
   } finally {
-      //deleteDir()
-      sh 'rm -rf .'
+      deleteDir()
+      //sh 'rm -rf *'
   }
 }
