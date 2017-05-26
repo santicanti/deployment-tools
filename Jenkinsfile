@@ -32,7 +32,7 @@ node {
       String amiName
       try {
         String fileName = PACKAGE_PATH.substring(PACKAGE_PATH.lastIndexOf('/') + 1)
-        amiName = fileName.take(fileName.lastIndexOf('.')) + currentBuild.number
+        amiName = fileName.take(fileName.lastIndexOf('.')) + '-' + currentBuild.number
       } catch (err) {
         error('There was an error creating the ami name: ' + err.getMessage())
       }
