@@ -39,7 +39,10 @@ node {
 
       echo 'Calling packer...'
       try {
-        sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY -var 'aws_secret_key='$AWS_SECRET_KEY -var 'ami_name'=$amiName template.json"
+        sh "./packer build -var 'aws_access_key='$AWS_ACCESS_KEY" +
+            "-var 'aws_secret_key='$AWS_SECRET_KEY" +
+            "-var 'instance_t='$INSTANCE_TYPE" +
+            "-var 'ami_name'=$amiName template.json"
       } catch (err) {
         error('There was an error calling packer: ' + err.getMessage())
       }

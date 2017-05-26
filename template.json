@@ -2,7 +2,8 @@
   "variables": {
     "aws_access_key": "",
     "aws_secret_key": "",
-    "ami_name": ""
+    "ami_name": "",
+    "instance_t": ""
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -10,7 +11,7 @@
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-east-1",
     "source_ami": "ami-fce3c696",
-    "instance_type": "t2.micro",
+    "instance_type": "{{user `instance_t`}}",
     "ssh_username": "ubuntu",
     "ami_name": "{{user `ami_name`}}"
   }],
